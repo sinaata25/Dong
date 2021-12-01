@@ -1,0 +1,2 @@
+rootProject.name = "dong"
+include ':app'

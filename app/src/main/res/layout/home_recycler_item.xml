@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="10dp"
+        android:id="@+id/card_item_home"
+        android:layout_marginBottom="5dp"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/style"
+            android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/style"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_del2"
+                android:layout_gravity="center"
+                android:id="@+id/remove_home"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="سفر شمال"
+                android:gravity="center"
+                android:id="@+id/detail_list"
+                android:paddingRight="10dp"
+                android:textSize="30dp"
+                android:fontFamily="@font/lalezarfont"
+                android:padding="15dp"
+                android:layout_weight=".95"
+                android:textColor="@color/white"
+                android:layout_height="70dp"/>
+
+        </LinearLayout>
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:gravity="right|center"
+                android:fontFamily="@font/lalezarfont"
+                android:textSize="20dp"
+                android:drawablePadding="5dp"
+        android:drawableRight="@drawable/ic_friends"
+                android:id="@+id/text_names"
+                android:paddingHorizontal="10dp"
+                android:text="محمد,علی,صادق,رضا"
+                android:layout_height="45dp"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/style2"
+    android:layout_height="45dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:gravity="right|center"
+        android:id="@+id/result_item_home"
+        android:layout_weight=".8"
+        android:fontFamily="@font/lalezarfont"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:text="200,000تومان"
+        android:layout_height="45dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:gravity="right|center"
+        android:id="@+id/text_hazineha"
+        android:layout_weight=".2"
+        android:fontFamily="@font/lalezarfont"
+        android:textSize="20dp"
+        android:drawablePadding="5dp"
+        android:drawableRight="@drawable/ic_money"
+        android:paddingRight="10dp"
+        android:text="مجموع هزینه ها:"
+        android:layout_height="45dp"/>
+
+</LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
