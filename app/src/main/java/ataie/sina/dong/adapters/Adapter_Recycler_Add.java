@@ -21,7 +21,7 @@ import ataie.sina.dong.models.Model_Spends;
 
 public class Adapter_Recycler_Add extends RecyclerView.Adapter<Adapter_Recycler_Add.viewholder> {
 
-
+    public static Remove_Add remove_add;
     Context context;
     List<String> list;
     FragmentManager fragmentManager;
@@ -70,13 +70,16 @@ public class Adapter_Recycler_Add extends RecyclerView.Adapter<Adapter_Recycler_
         holder.image_remove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                    remove_add.delete(pos);
             }
         });
 
         }
 
 
+        public interface Remove_Add{
+        void delete(int pos);
+        }
 
 
 }

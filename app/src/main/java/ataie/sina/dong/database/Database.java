@@ -29,6 +29,23 @@ public class Database extends SQLiteOpenHelper{
             COL_DATE+" TEXT,"+
             COL_RESULT+" INTEGER);";
 ////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////TABLE SET
+public static final String TBL_NAME_1="pays";
+    public static final String COL_ID_1="id";
+    public static final String COL_ID_PERSON="id_person";
+    public static final String COL_TABLE_ID="table_id";
+    public static final String COL_NAME="name";
+    public static final String COL_PAYS="pays";
+    public static final String COL_DETAIL_1="detail";
+    //////////////////////////////////////////////////////////////////WRITE QUERY
+    public static final String QUERY_1="CREATE TABLE IF NOT EXISTS "+TBL_NAME_1+"("+
+            COL_ID_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
+            COL_TABLE_ID+" INTEGER,"+
+            COL_ID_PERSON+" INTEGER,"+
+            COL_NAME+" TEXT,"+
+            COL_DETAIL_1+" TEXT,"+
+            COL_PAYS+" INTEGER);";
+////////////////////////////////////////////////////////////////////
 
 
     public Database(Context context) {
@@ -39,7 +56,9 @@ public class Database extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
+            db.execSQL(QUERY_1);
             db.execSQL(QUERY);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,13 +87,68 @@ public class Database extends SQLiteOpenHelper{
         long id=sqlitedatabase.insert(TBL_NAME, null,contentvalues);
         return id;
     }
-    ///////////////////////////////baraye daryafte etelaat database yek cursur misazim va in tabe ro mirizim dakhelesh
-    public Cursor getinfo()
+
+
+
+    public long addinfo_1(int table_id,int id_person,String name,String detail,int pays)
     {
-        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
-        Cursor cursor=sqLiteDatabase.rawQuery("SELECT * FROM "+ TBL_NAME, null);
+
+
+        ContentValues contentvalues=new ContentValues();
+//...........................................................................setting content values
+        contentvalues.put(COL_DETAIL, detail);
+        contentvalues.put(COL_ID_PERSON,id_person);
+        contentvalues.put(COL_TABLE_ID, table_id);
+        contentvalues.put(COL_NAME, name);
+        contentvalues.put(COL_PAYS, pays);
+//............................................................................
+        SQLiteDatabase sqlitedatabase=this.getWritableDatabase();
+        long id=sqlitedatabase.insert(TBL_NAME_1, null,contentvalues);
+        return id;
+    }
+
+    ///////////////////////////////baraye daryafte etelaat database yek cursur misazim va in tabe ro mirizim dakhelesh
+    public Cursor getinfo(int datanum)
+    {
+        Cursor cursor = null;
+        if(datanum==0){
+            SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+            cursor=sqLiteDatabase.rawQuery("SELECT * FROM "+ TBL_NAME, null);
+
+        }else if(datanum==1) {
+            SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+            cursor=sqLiteDatabase.rawQuery("SELECT * FROM "+ TBL_NAME_1, null);
+        }
         return cursor;
     }
+//
+
+
+    public Cursor getinfo_raw(int datanum,int raw)
+    {
+        Cursor cursor = null;
+        if(datanum==1){
+            SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+            cursor=sqLiteDatabase.rawQuery("SELECT * FROM "+ TBL_NAME_1+" WHERE table_id="+raw, null);
+        }
+        else if(datanum==0){
+            SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+            cursor=sqLiteDatabase.rawQuery("SELECT * FROM "+ TBL_NAME+" WHERE id="+raw, null);
+        }
+
+
+
+        return cursor;
+    }
+
+
+
+
+
+
+
+
+
 
     public void delet_row(int id)
     {

@@ -1,18 +1,15 @@
 package ataie.sina.dong.fragments;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,7 +25,7 @@ import ataie.sina.dong.models.Model_Spends;
 
 public class Home extends Fragment {
     List<Model_Spends>list;
-    Database database;
+    public static   Database database;
     FloatingActionButton floatingActionButton;
     RecyclerView recyclerView;
     Adapter_Recycler_Home adapter;
@@ -53,17 +50,11 @@ public class Home extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
         adapter=new Adapter_Recycler_Home(list,getContext(),getParentFragmentManager());
         floatingActionButton=view.findViewById(R.id.floatingActionButton_home);
-/*      database.addinfo("salam","ds","dsd",1);
-        database.addinfo("zcx","ds","dsd",1);
-        database.addinfo("svc","ds","dsd",1);
-        database.addinfo("fs","ds","dsd",1);
-        database.addinfo("k","ds","dsd",1);
-        database.addinfo("sp","ds","dsd",1);*/
 
 
     }
     private void Get_Data() {
-        Cursor cursor=database.getinfo();
+        Cursor cursor=database.getinfo(0);
         if(cursor!=null){
             //////////in for
             for(cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext())
@@ -112,6 +103,23 @@ Dialog_Wanna_Delete.delete=new Dialog_Wanna_Delete.Delete() {
 
     }
 };
+
+////////////
+Dialog_Add dialog_add=new Dialog_Add();
+Dialog_Add.news=new Dialog_Add.News() {
+    @Override
+    public void item_added() {
+        list.clear();
+        Get_Data();
+    }
+};
+
+
+
+
+
+
+
     }
 
 
