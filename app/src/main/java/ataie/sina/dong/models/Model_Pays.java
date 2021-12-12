@@ -6,7 +6,16 @@ public class Model_Pays {
     int id_table;
     String name;
     int pays;
+    String date;
     String detail;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public int getId() {
         return id;

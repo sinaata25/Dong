@@ -37,6 +37,7 @@ public static final String TBL_NAME_1="pays";
     public static final String COL_NAME="name";
     public static final String COL_PAYS="pays";
     public static final String COL_DETAIL_1="detail";
+    public static final String COL_DATE_1="date";
     //////////////////////////////////////////////////////////////////WRITE QUERY
     public static final String QUERY_1="CREATE TABLE IF NOT EXISTS "+TBL_NAME_1+"("+
             COL_ID_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+
@@ -44,6 +45,7 @@ public static final String TBL_NAME_1="pays";
             COL_ID_PERSON+" INTEGER,"+
             COL_NAME+" TEXT,"+
             COL_DETAIL_1+" TEXT,"+
+            COL_DATE_1+" TEXT,"+
             COL_PAYS+" INTEGER);";
 ////////////////////////////////////////////////////////////////////
 
@@ -90,17 +92,18 @@ public static final String TBL_NAME_1="pays";
 
 
 
-    public long addinfo_1(int table_id,int id_person,String name,String detail,int pays)
+    public long addinfo_1(int table_id,int id_person,String name,String detail,int pays,String date)
     {
 
 
         ContentValues contentvalues=new ContentValues();
 //...........................................................................setting content values
-        contentvalues.put(COL_DETAIL, detail);
+        contentvalues.put(COL_DETAIL_1, detail);
         contentvalues.put(COL_ID_PERSON,id_person);
         contentvalues.put(COL_TABLE_ID, table_id);
         contentvalues.put(COL_NAME, name);
         contentvalues.put(COL_PAYS, pays);
+        contentvalues.put(COL_DATE_1, date);
 //............................................................................
         SQLiteDatabase sqlitedatabase=this.getWritableDatabase();
         long id=sqlitedatabase.insert(TBL_NAME_1, null,contentvalues);
